@@ -1,0 +1,63 @@
+{
+    "Текс ?": {
+        "text": "Пример отправки простого текста"
+    },
+    "Фото(с описанием)+Текст ?": {
+        "text": "Пример отправки текста и фото (с описанием)",
+        "photo": { 
+            "url": "https://img.gazeta.ru/files3/749/14276749/2in1-2021new-_1_-k32opiya-pic_32ratio_900x600-900x600-72725.jpg",
+            "caption": "Текст у фото"
+        }
+    },
+    "Фото(без описания)+Текст ?": {
+        "text": "Пример отправки текста и фото (без описания)",
+        "photo":{
+            "url": "https://img.gazeta.ru/files3/749/14276749/2in1-2021new-_1_-k32opiya-pic_32ratio_900x600-900x600-72725.jpg"
+        }
+    },
+    "Документ(без описания)+Текст ?": {
+        "text": "Пример отправки текста и документа (без описания)",
+        "document": {
+            "url": "https://msupress.com/ebook/978-5-19-011853-7_e-book.pdf"
+        }
+    },
+    "Документ(c описанием)+Текст ?": {
+        "text": "Пример отправки текста и документа (c описанием)",
+        "document": {
+            "url": "https://msupress.com/ebook/978-5-19-011853-7_e-book.pdf",
+            "caption": "Текст у документа"
+        }
+    },
+    "Фото(c описанием) ?": {
+        "photo":{
+            "url": "https://img.gazeta.ru/files3/749/14276749/2in1-2021new-_1_-k32opiya-pic_32ratio_900x600-900x600-72725.jpg",
+            "caption": "Текст у фото"
+        }
+    },
+    "Фото(без описания) ?": {
+        "photo":{
+            "url": "https://img.gazeta.ru/files3/749/14276749/2in1-2021new-_1_-k32opiya-pic_32ratio_900x600-900x600-72725.jpg"
+        }
+    },
+    "Видео(без описания) ?": {
+        "video":{
+            "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+        }
+    },
+    "Видео (c описанием) ?": {
+        "video": {
+            "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "caption": "Текст у видео" 
+        }
+    },
+    "Фото с компьютера": {
+        "photo" : {
+            "file_path": "cat.jpeg"
+        }
+    },
+    "Документ с компьютера": {
+        "document" : {
+            "file_path": "text.txt"
+        }
+    }
+}
