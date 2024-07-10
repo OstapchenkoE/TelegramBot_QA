@@ -3,6 +3,7 @@ from aiogram.types import Message, CallbackQuery, ReplyKeyboardMarkup, KeyboardB
 from aiogram.filters import Command
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from aiogram.enums import ParseMode, ChatAction
+from aiogram.client.bot import DefaultBotProperties
 
 import asyncio
 import json
@@ -11,7 +12,7 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
-bot = Bot(os.getenv("TOKEN_BOT"))
+bot = Bot(os.getenv("TOKEN_BOT"), default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 dp = Dispatcher()
 
 
@@ -45,21 +46,6 @@ async def start(message: Message):
     await message.answer("Добро пожаловать! Это бот который поможет ответить на некоторые ваши воросы.",
                          reply_markup=questions)
 
-# @dp.message(F.text == "о")
-# async def test(message: Message):
-#     file_path = "text.txt"
-#     property = [FSInputFile(file_path), "ntrcn"]
-#     await message.answer_document(FSInputFile(file_path), caption=None)
-    
-#     await message.answer("Хотите задать ещё вопрос?",
-#                         reply_markup= next_question)
-
-
-# dop_messages = {
-#         'url': URLInputFile,
-#         'caption': "",
-#         'file_path': FSInputFile, 
-#     }
 
 types_of_send = {
     'text': ChatAction.TYPING,
@@ -93,10 +79,12 @@ async def handle_question(message: Message):
             list_property= list(response.get(type))
             if 'url' in list_property:
                 await message.bot.send_chat_action(chat_id=message.chat.id, action=types_of_send[type])
-                await send_messages[type](URLInputFile(response.get(type).get("url")), caption=response.get(type).get("caption"), action=ChatAction.UPLOAD_DOCUMENT)
+                await send_messages[type](URLInputFile(response.get(type).get("url"), filename=response.get(type).get("filename")), 
+                                          caption=response.get(type).get("caption"), action=ChatAction.UPLOAD_DOCUMENT)
             if 'file_path' in list_property:
                 await message.bot.send_chat_action(chat_id=message.chat.id, action=types_of_send[type])
-                await send_messages[type](FSInputFile(response.get(type).get("file_path")), caption=response.get(type).get("caption"), action=ChatAction.UPLOAD_DOCUMENT)
+                await send_messages[type](FSInputFile(response.get(type).get("file_path"), filename=response.get(type).get("filename")),
+                                          caption=response.get(type).get("caption"), action=ChatAction.UPLOAD_DOCUMENT)
     # Следующий вопрос          
     await message.answer("Хотите задать ещё вопрос?",
                         reply_markup= next_question)
